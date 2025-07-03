@@ -1,0 +1,205 @@
+
+import React, { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Brain, BookOpen, Star, Trophy } from 'lucide-react';
+
+interface AuthLoginProps {
+  onLogin: (userData: any) => void;
+}
+
+const AuthLogin: React.FC<AuthLoginProps> = ({ onLogin }) => {
+  const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    // Simulate authentication delay
+    setTimeout(() => {
+      const userData = {
+        name: name || email.split('@')[0],
+        email,
+        level: 3,
+        points: 1250,
+        streak: 7,
+        completedLessons: 15,
+        totalLessons: 50
+      };
+      
+      localStorage.setItem('microlearning_user', JSON.stringify(userData));
+      onLogin(userData);
+      setLoading(false);
+    }, 1500);
+  };
+
+  const handleDemoLogin = () => {
+    const demoUser = {
+      name: 'Alex Johnson',
+      email: 'demo@example.com',
+      level: 5,
+      points: 2150,
+      streak: 12,
+      completedLessons: 23,
+      totalLessons: 50
+    };
+    
+    localStorage.setItem('microlearning_user', JSON.stringify(demoUser));
+    onLogin(demoUser);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
+      <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        {/* Welcome Section */}
+        <div className="text-center lg:text-left space-y-6">
+          <div className="flex items-center justify-center lg:justify-start gap-3">
+            <div className="p-3 bg-blue-600 text-white rounded-xl">
+              <Brain className="h-8 w-8" />
+            </div>
+            <h1 className="text-3xl font-bold text-gray-900">TechLearn AI</h1>
+          </div>
+          
+          <div className="space-y-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+              Master Technology 
+              <span className="text-blue-600"> One Bite</span> at a Time
+            </h2>
+            <p className="text-xl text-gray-600 leading-relaxed">
+              Interactive microlearning powered by AI. Learn web development, AI/ML, 
+              cloud computing, and more through personalized bite-sized lessons.
+            </p>
+          </div>
+          
+          {/* Features */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+            <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm">
+              <BookOpen className="h-6 w-6 text-blue-600" />
+              <div>
+                <h3 className="font-semibold text-gray-900">Interactive Lessons</h3>
+                <p className="text-sm text-gray-600">Bite-sized content with quizzes</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm">
+              <Brain className="h-6 w-6 text-purple-600" />
+              <div>
+                <h3 className="font-semibold text-gray-900">AI-Powered</h3>
+                <p className="text-sm text-gray-600">Adaptive learning paths</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm">
+              <Star className="h-6 w-6 text-yellow-600" />
+              <div>
+                <h3 className="font-semibold text-gray-900">Gamified</h3>
+                <p className="text-sm text-gray-600">Earn points and badges</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm">
+              <Trophy className="h-6 w-6 text-green-600" />
+              <div>
+                <h3 className="font-semibold text-gray-900">Track Progress</h3>
+                <p className="text-sm text-gray-600">Monitor your learning journey</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Auth Form */}
+        <Card className="w-full max-w-md mx-auto lg:mx-0">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl">
+              {isLogin ? 'Welcome Back!' : 'Join TechLearn AI'}
+            </CardTitle>
+            <p className="text-gray-600">
+              {isLogin ? 'Continue your learning journey' : 'Start your learning adventure'}
+            </p>
+          </CardHeader>
+          
+          <CardContent className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {!isLogin && (
+                <div className="space-y-2">
+                  <Label htmlFor="name">Full Name</Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter your full name"
+                    required={!isLogin}
+                  />
+                </div>
+              )}
+              
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
+              
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
+              </Button>
+            </form>
+            
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">Or</span>
+              </div>
+            </div>
+            
+            <Button 
+              variant="outline" 
+              className="w-full" 
+              onClick={handleDemoLogin}
+            >
+              Try Demo Account
+            </Button>
+            
+            <div className="text-center">
+              <button
+                type="button"
+                className="text-sm text-blue-600 hover:underline"
+                onClick={() => setIsLogin(!isLogin)}
+              >
+                {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
+              </button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+};
+
+export default AuthLogin;
