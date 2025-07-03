@@ -9,7 +9,99 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+          name: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id: string
+          name: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+          name?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      user_progress: {
+        Row: {
+          completed: boolean | null
+          completed_at: string | null
+          created_at: string | null
+          id: string
+          lesson_id: number
+          score: number | null
+          topic_id: string
+          user_id: string | null
+        }
+        Insert: {
+          completed?: boolean | null
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          lesson_id: number
+          score?: number | null
+          topic_id: string
+          user_id?: string | null
+        }
+        Update: {
+          completed?: boolean | null
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          lesson_id?: number
+          score?: number | null
+          topic_id?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      user_stats: {
+        Row: {
+          completed_lessons: number | null
+          created_at: string | null
+          id: string
+          level: number | null
+          points: number | null
+          streak: number | null
+          total_lessons: number | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          completed_lessons?: number | null
+          created_at?: string | null
+          id?: string
+          level?: number | null
+          points?: number | null
+          streak?: number | null
+          total_lessons?: number | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          completed_lessons?: number | null
+          created_at?: string | null
+          id?: string
+          level?: number | null
+          points?: number | null
+          streak?: number | null
+          total_lessons?: number | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

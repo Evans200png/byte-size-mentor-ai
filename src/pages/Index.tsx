@@ -1,21 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '@/hooks/useAuth';
+import { useUserData } from '@/hooks/useUserData';
 import AuthLogin from '@/components/AuthLogin';
 import Dashboard from '@/components/Dashboard';
 import TopicSelector from '@/components/TopicSelector';
 import ChatInterface from '@/components/ChatInterface';
 
-type AppState = 'auth' | 'dashboard' | 'topics' | 'chat';
-
-interface User {
-  name: string;
-  email: string;
-  level: number;
-  points: number;
-  streak: number;
-  completedLessons: number;
-  totalLessons: number;
-}
+type AppState = 'dashboard' | 'topics' | 'chat';
 
 interface Topic {
   id: string;
@@ -30,29 +22,27 @@ interface Topic {
 }
 
 const Index = () => {
-  const [appState, setAppState] = useState<AppState>('auth');
-  const [user, setUser] = useState<User | null>(null);
+  const { user, loading: authLoading } = useAuth();
+  const { updateUserStats } = useUserData();
+  const [appState, setAppState] = useState<AppState>('dashboard');
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
 
-  useEffect(() => {
-    // Check for existing user session
-    const savedUser = localStorage.getItem('microlearning_user');
-    if (savedUser) {
-      try {
-        const userData = JSON.parse(savedUser);
-        setUser(userData);
-        setAppState('dashboard');
-      } catch (error) {
-        console.error('Error parsing saved user data:', error);
-        localStorage.removeItem('microlearning_user');
-      }
-    }
-  }, []);
+  // Show loading screen while checking authentication
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
-  const handleLogin = (userData: User) => {
-    setUser(userData);
-    setAppState('dashboard');
-  };
+  // If not authenticated, show login page
+  if (!user) {
+    return <AuthLogin />;
+  }
 
   const handleStartLearning = () => {
     setAppState('topics');
@@ -87,17 +77,11 @@ const Index = () => {
   };
 
   const handleLessonComplete = (score: number) => {
-    if (user) {
-      const updatedUser = {
-        ...user,
-        points: user.points + (score >= 80 ? 100 : 50),
-        completedLessons: user.completedLessons + 1,
-        level: Math.floor((user.completedLessons + 1) / 5) + 1
-      };
-      
-      setUser(updatedUser);
-      localStorage.setItem('microlearning_user', JSON.stringify(updatedUser));
-    }
+    // Update user stats
+    updateUserStats({
+      points: (score >= 80 ? 100 : 50),
+      completedLessons: 1 // This will be added to current count
+    });
     
     setTimeout(() => {
       setAppState('dashboard');
@@ -119,17 +103,13 @@ const Index = () => {
 
   // Render based on current app state
   switch (appState) {
-    case 'auth':
-      return <AuthLogin onLogin={handleLogin} />;
-      
     case 'dashboard':
-      return user ? (
+      return (
         <Dashboard 
-          user={user}
           onStartLearning={handleStartLearning}
           onResumeLesson={handleResumeLesson}
         />
-      ) : null;
+      );
       
     case 'topics':
       return (
@@ -150,7 +130,12 @@ const Index = () => {
       ) : null;
       
     default:
-      return <AuthLogin onLogin={handleLogin} />;
+      return (
+        <Dashboard 
+          onStartLearning={handleStartLearning}
+          onResumeLesson={handleResumeLesson}
+        />
+      );
   }
 };
 

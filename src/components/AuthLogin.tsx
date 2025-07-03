@@ -4,54 +4,52 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Brain, BookOpen, Star, Trophy } from 'lucide-react';
+import { Brain, BookOpen, Star, Trophy, Loader2 } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
+import { useToast } from '@/hooks/use-toast';
 
-interface AuthLoginProps {
-  onLogin: (userData: any) => void;
-}
-
-const AuthLogin: React.FC<AuthLoginProps> = ({ onLogin }) => {
+const AuthLogin: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
+  const { signIn, signUp } = useAuth();
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate authentication delay
-    setTimeout(() => {
-      const userData = {
-        name: name || email.split('@')[0],
-        email,
-        level: 3,
-        points: 1250,
-        streak: 7,
-        completedLessons: 15,
-        totalLessons: 50
-      };
-      
-      localStorage.setItem('microlearning_user', JSON.stringify(userData));
-      onLogin(userData);
-      setLoading(false);
-    }, 1500);
-  };
+    try {
+      let result;
+      if (isLogin) {
+        result = await signIn(email, password);
+      } else {
+        result = await signUp(email, password, name);
+      }
 
-  const handleDemoLogin = () => {
-    const demoUser = {
-      name: 'Alex Johnson',
-      email: 'demo@example.com',
-      level: 5,
-      points: 2150,
-      streak: 12,
-      completedLessons: 23,
-      totalLessons: 50
-    };
-    
-    localStorage.setItem('microlearning_user', JSON.stringify(demoUser));
-    onLogin(demoUser);
+      if (result.error) {
+        toast({
+          title: "Authentication Error",
+          description: result.error.message,
+          variant: "destructive"
+        });
+      } else if (!isLogin) {
+        toast({
+          title: "Success!",
+          description: "Please check your email to confirm your account.",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -165,26 +163,16 @@ const AuthLogin: React.FC<AuthLoginProps> = ({ onLogin }) => {
               </div>
               
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Please wait...
+                  </>
+                ) : (
+                  isLogin ? 'Sign In' : 'Create Account'
+                )}
               </Button>
             </form>
-            
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">Or</span>
-              </div>
-            </div>
-            
-            <Button 
-              variant="outline" 
-              className="w-full" 
-              onClick={handleDemoLogin}
-            >
-              Try Demo Account
-            </Button>
             
             <div className="text-center">
               <button
