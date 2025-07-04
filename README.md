@@ -50,7 +50,7 @@ The platform offers personalized learning paths, voice/narration support, and an
 ## 💻 Setup Instructions
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/techbites.git
+   git clone [https://github.com/Evans200png/byte-size-mentor-ai.git]
    ```
 
 2. Open the project folder:
