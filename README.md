@@ -1,58 +1,33 @@
-# Welcome to your Lovable project
+# TechBites 🎓💻  
+_Your Microlearning Coach for Tech Skills_
 
-## Project info
+TechBites is an AI-powered microlearning web platform that helps learners acquire tech skills like **AI & Machine Learning, Cybersecurity, Web Development, Cloud Computing, Data Science, and Mobile Development** through **bite-sized lessons, videos, notes, and interactive quizzes**.
 
-**URL**: https://lovable.dev/projects/af080693-29f0-427c-bcb3-7443d8ee094f
+The platform offers personalized learning paths, voice/narration support, and an interactive chatbot to guide learners through their journey in an engaging and accessible way.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🚀 Features
+- 🎯 **Microlearning Coach:** Bite-sized lessons tailored to each learner's pace.
+- 🧠 **AI-Driven Personalization:** Smart recommendations and adaptive learning paths.
+- 🔊 **Voice & Narration Support:** Listen to lessons via integrated text-to-speech.
+- 🎮 **Interactive Quizzes:** Engage with quick knowledge checks and gamified learning.
+- 🔐 **User Authentication:** Secure login and progress tracking.
+- 🌐 **Tech Topics Covered:**
+  - AI & Machine Learning
+  - Cybersecurity
+  - Web Development
+  - Cloud Computing
+  - Data Science
+  - Mobile Development
+- 📣 **Testimonials Section:** Real user stories about how TechBites helped them.
+- 📚 **Topic Selection with Access Control:** Click-to-learn with login/register prompts.
+- 📞 **Contact Footer:** Gmail, LinkedIn, Instagram, X (Twitter), and phone contact links.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/af080693-29f0-427c-bcb3-7443d8ee094f) and start prompting.
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
+## Technologies used:
 
 - Vite
 - TypeScript
@@ -60,14 +35,47 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/af080693-29f0-427c-bcb3-7443d8ee094f) and click on Share -> Publish.
+## 🗺️ Website Navigation Flow
+1. **Home Page:** Introduction to TechBites
+2. **Topics Section:** Explore topics (AI/ML, Cybersecurity, Web Dev, etc.)
+3. **Login/Register Prompt:** Required before accessing learning areas
+4. **Learning Dashboards:** Personalized lessons, videos, notes, and quizzes
+5. **Testimonial Section:** Learner success stories
+6. **Footer:** Contact links (Gmail, LinkedIn, Instagram, X, Phone)
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## 💻 Setup Instructions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/techbites.git
+   ```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+2. Open the project folder:
+   ```bash
+   cd techbites
+   ```
+3. Open index.html in your browser to view the website.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+
+## 🌐 Live Demo
+[view the website](https://byte-size-mentor.netlify.app/)
+
+---
+
+## 📫 Contact
+Email: kimanievansonk@gmail.com
+
+LinkedIn: Evanson Kimani
+
+X (Twitter): @kim43364
+
+
+---
+
+## 📜 License
+This project is open-source and available under the MIT License.
+
