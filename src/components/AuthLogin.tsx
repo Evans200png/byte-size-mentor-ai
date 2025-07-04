@@ -10,11 +10,12 @@ import { useToast } from '@/hooks/use-toast';
 
 const AuthLogin: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, resetPassword } = useAuth();
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,6 +41,44 @@ const AuthLogin: React.FC = () => {
           title: "Success!",
           description: "Please check your email to confirm your account.",
         });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) {
+      toast({
+        title: "Email Required",
+        description: "Please enter your email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const result = await resetPassword(email);
+      if (result.error) {
+        toast({
+          title: "Reset Password Error",
+          description: result.error.message,
+          variant: "destructive"
+        });
+      } else {
+        toast({
+          title: "Reset Email Sent",
+          description: "Please check your email for password reset instructions.",
+        });
+        setShowForgotPassword(false);
       }
     } catch (error) {
       toast({
@@ -115,73 +154,133 @@ const AuthLogin: React.FC = () => {
         <Card className="w-full max-w-md mx-auto lg:mx-0">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">
-              {isLogin ? 'Welcome Back!' : 'Join TechBites'}
+              {showForgotPassword 
+                ? 'Reset Password' 
+                : isLogin 
+                  ? 'Welcome Back!' 
+                  : 'Join TechBites'
+              }
             </CardTitle>
             <p className="text-gray-600">
-              {isLogin ? 'Continue your learning journey' : 'Start your learning adventure'}
+              {showForgotPassword 
+                ? 'Enter your email to receive reset instructions'
+                : isLogin 
+                  ? 'Continue your learning journey' 
+                  : 'Start your learning adventure'
+              }
             </p>
           </CardHeader>
           
           <CardContent className="space-y-4">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {!isLogin && (
+            {showForgotPassword ? (
+              <form onSubmit={handleForgotPassword} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="email">Email</Label>
                   <Input
-                    id="name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter your full name"
-                    required={!isLogin}
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    required
                   />
                 </div>
-              )}
-              
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your password"
-                  required
-                />
-              </div>
-              
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Please wait...
-                  </>
-                ) : (
-                  isLogin ? 'Sign In' : 'Create Account'
+                
+                <Button type="submit" className="w-full" disabled={loading}>
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    'Send Reset Email'
+                  )}
+                </Button>
+              </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {!isLogin && (
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Full Name</Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Enter your full name"
+                      required={!isLogin}
+                    />
+                  </div>
                 )}
-              </Button>
-            </form>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="password">Password</Label>
+                  <Input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                
+                <Button type="submit" className="w-full" disabled={loading}>
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Please wait...
+                    </>
+                  ) : (
+                    isLogin ? 'Sign In' : 'Create Account'
+                  )}
+                </Button>
+              </form>
+            )}
             
-            <div className="text-center">
-              <button
-                type="button"
-                className="text-sm text-blue-600 hover:underline"
-                onClick={() => setIsLogin(!isLogin)}
-              >
-                {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
-              </button>
+            <div className="text-center space-y-2">
+              {showForgotPassword ? (
+                <button
+                  type="button"
+                  className="text-sm text-blue-600 hover:underline"
+                  onClick={() => setShowForgotPassword(false)}
+                >
+                  Back to Sign In
+                </button>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    className="text-sm text-blue-600 hover:underline"
+                    onClick={() => setIsLogin(!isLogin)}
+                  >
+                    {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
+                  </button>
+                  {isLogin && (
+                    <div>
+                      <button
+                        type="button"
+                        className="text-sm text-gray-600 hover:underline"
+                        onClick={() => setShowForgotPassword(true)}
+                      >
+                        Forgot your password?
+                      </button>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           </CardContent>
         </Card>
