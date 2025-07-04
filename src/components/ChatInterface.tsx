@@ -44,7 +44,7 @@ interface ChatInterfaceProps {
   onLessonComplete: (score: number) => void;
 }
 
-// Real educational content for different topics
+// Comprehensive educational content for all topics
 const topicContent = {
   "Web": {
     videos: [
@@ -73,93 +73,248 @@ const topicContent = {
       "🔧 **DOM (Document Object Model)** allows JavaScript to manipulate HTML elements",
       "📱 **Responsive Design** ensures websites work on all devices using media queries",
       "🚀 **Modern Tools**: React, Vue, Angular for building complex web applications"
+    ],
+    quizzes: [
+      {
+        question: "What does HTML stand for?",
+        options: [
+          "HyperText Markup Language",
+          "High Tech Modern Language",
+          "Home Tool Markup Language",
+          "Hyperlink and Text Markup Language"
+        ],
+        correct: 0
+      },
+      {
+        question: "Which CSS property controls the text size?",
+        options: ["font-weight", "font-size", "text-size", "font-style"],
+        correct: 1
+      }
     ]
   },
-  "Python": {
+  "AI": {
     videos: [
       {
-        title: "Python Programming Basics - Variables and Data Types",
-        url: "https://www.youtube.com/embed/kqtD5dpn9C8",
-        description: "Learn Python fundamentals including variables, strings, numbers, and basic operations"
+        title: "Introduction to Artificial Intelligence - Core Concepts",
+        url: "https://www.youtube.com/embed/JMUxmLyrhSk",
+        description: "Understanding AI fundamentals, machine learning, and neural networks"
       },
       {
-        title: "Python Functions and Control Flow",
-        url: "https://www.youtube.com/embed/9Os0o3wzS_I",
-        description: "Master Python functions, loops, and conditional statements"
+        title: "Machine Learning Algorithms Explained",
+        url: "https://www.youtube.com/embed/ukzFI9rgwfU",
+        description: "Learn about supervised, unsupervised, and reinforcement learning"
       },
       {
-        title: "Python Data Structures - Lists, Dictionaries, and More",
-        url: "https://www.youtube.com/embed/R-HLU9Fl5ug",
-        description: "Understand Python's built-in data structures and when to use them"
+        title: "Deep Learning and Neural Networks",
+        url: "https://www.youtube.com/embed/aircAruvnKk",
+        description: "Explore deep learning concepts and neural network architectures"
       }
     ],
     notes: [
-      "🐍 **Python** is a high-level, interpreted programming language known for its simplicity",
-      "📊 **Data Types**: int, float, str, bool, list, dict, tuple, set",
-      "🔄 **Control Structures**: if/elif/else, for loops, while loops, break, continue",
-      "⚙️ **Functions**: def keyword, parameters, return values, scope",
-      "📚 **Libraries**: NumPy (numerical computing), Pandas (data analysis), Django (web development)",
-      "🧹 **Python Philosophy**: 'Beautiful is better than ugly', 'Simple is better than complex'",
-      "📦 **Modules and Packages**: import system, pip package manager",
-      "🐛 **Error Handling**: try/except blocks, common exception types"
+      "🤖 **Artificial Intelligence (AI)** is the simulation of human intelligence in machines",
+      "🧠 **Machine Learning (ML)** is a subset of AI that learns from data without explicit programming",
+      "🔍 **Supervised Learning**: Training with labeled data (classification, regression)",
+      "🎯 **Unsupervised Learning**: Finding patterns in unlabeled data (clustering, association)",
+      "🎮 **Reinforcement Learning**: Learning through interaction and rewards",
+      "⚡ **Neural Networks**: Computing systems inspired by biological neural networks",
+      "🔥 **Deep Learning**: ML using deep neural networks with multiple layers",
+      "📊 **Applications**: Image recognition, NLP, autonomous vehicles, recommendation systems"
+    ],
+    quizzes: [
+      {
+        question: "What type of learning uses labeled training data?",
+        options: [
+          "Supervised Learning",
+          "Unsupervised Learning", 
+          "Reinforcement Learning",
+          "Deep Learning"
+        ],
+        correct: 0
+      },
+      {
+        question: "Which is NOT a common application of AI?",
+        options: [
+          "Image Recognition",
+          "Natural Language Processing",
+          "Manual Data Entry",
+          "Autonomous Vehicles"
+        ],
+        correct: 2
+      }
     ]
   },
-  "React": {
+  "Cloud": {
     videos: [
       {
-        title: "React Fundamentals - Components and JSX",
-        url: "https://www.youtube.com/embed/Tn6-PIqc4UM",
-        description: "Learn React components, JSX syntax, and component structure"
+        title: "Cloud Computing Fundamentals - AWS, Azure, GCP",
+        url: "https://www.youtube.com/embed/M988_fsOSWo",
+        description: "Introduction to cloud computing concepts and major providers"
       },
       {
-        title: "React Hooks - useState and useEffect",
-        url: "https://www.youtube.com/embed/O6P86uwfdR0",
-        description: "Master React hooks for state management and side effects"
+        title: "Docker and Containerization Explained",
+        url: "https://www.youtube.com/embed/fqMOX6JJhGo",
+        description: "Learn containerization with Docker and container orchestration"
       },
       {
-        title: "Building a React Todo App - Complete Tutorial",
-        url: "https://www.youtube.com/embed/hQAHSlTtcmY",
-        description: "Build a complete React application from scratch"
+        title: "Kubernetes for Beginners",
+        url: "https://www.youtube.com/embed/X48VuDVv0do",
+        description: "Container orchestration and management with Kubernetes"
       }
     ],
     notes: [
-      "⚛️ **React** is a JavaScript library for building user interfaces",
-      "🧩 **Components**: Reusable pieces of UI that return JSX",
-      "📝 **JSX**: JavaScript XML - write HTML-like code in JavaScript",
-      "🔄 **State**: Component data that can change over time using useState",
-      "🎣 **Hooks**: Functions that let you use React features (useState, useEffect, etc.)",
-      "📡 **Props**: Data passed from parent to child components",
-      "🔄 **Component Lifecycle**: Mounting, updating, unmounting phases",
-      "🛠️ **Tools**: Create React App, Vite, Next.js for React development"
+      "☁️ **Cloud Computing** delivers computing services over the internet",
+      "🏢 **Service Models**: IaaS (Infrastructure), PaaS (Platform), SaaS (Software)",
+      "🌍 **Major Providers**: AWS (Amazon), Microsoft Azure, Google Cloud Platform",
+      "📦 **Containerization**: Packaging applications with Docker for consistency",
+      "⚙️ **Kubernetes**: Container orchestration platform for managing containerized applications",
+      "🔒 **Security**: Identity management, encryption, compliance in cloud environments",
+      "💰 **Cost Benefits**: Pay-as-you-use, reduced infrastructure costs",
+      "📈 **Scalability**: Auto-scaling resources based on demand"
+    ],
+    quizzes: [
+      {
+        question: "What does SaaS stand for?",
+        options: [
+          "Software as a Service",
+          "System as a Service",
+          "Security as a Service",
+          "Storage as a Service"
+        ],
+        correct: 0
+      },
+      {
+        question: "Which tool is primarily used for containerization?",
+        options: ["Kubernetes", "Docker", "Terraform", "Jenkins"],
+        correct: 1
+      }
     ]
   },
-  "JavaScript": {
+  "Cybersecurity": {
     videos: [
       {
-        title: "JavaScript Fundamentals - Variables and Functions",
-        url: "https://www.youtube.com/embed/hdI2bqOjy3c",
-        description: "Learn JavaScript basics including variables, functions, and scope"
+        title: "Cybersecurity Fundamentals - Protecting Digital Assets",
+        url: "https://www.youtube.com/embed/inWWhr5tnEA",
+        description: "Essential cybersecurity concepts and threat landscape overview"
       },
       {
-        title: "JavaScript Arrays and Objects",
-        url: "https://www.youtube.com/embed/R8rmfD9Y5-c",
-        description: "Master JavaScript data structures and object manipulation"
+        title: "Ethical Hacking and Penetration Testing",
+        url: "https://www.youtube.com/embed/3Kq1MIfTWCE",
+        description: "Introduction to ethical hacking methodologies and penetration testing"
       },
       {
-        title: "Asynchronous JavaScript - Promises and Async/Await",
-        url: "https://www.youtube.com/embed/PoRJizFvM7s",
-        description: "Understand asynchronous programming in JavaScript"
+        title: "Network Security and Firewalls",
+        url: "https://www.youtube.com/embed/kDEX1HXybrU",
+        description: "Understanding network security principles and firewall configurations"
       }
     ],
     notes: [
-      "💻 **JavaScript** is a versatile programming language that runs in browsers and servers",
-      "📋 **Variables**: let, const, var - modern JavaScript uses let and const",
-      "⚡ **Functions**: function declarations, arrow functions, callback functions",
-      "🔄 **Arrays**: push, pop, map, filter, reduce, forEach methods",
-      "🎯 **Objects**: key-value pairs, dot notation, bracket notation",
-      "⏰ **Asynchronous**: Promises, async/await, setTimeout, fetch API",
-      "🌐 **DOM Manipulation**: getElementById, querySelector, addEventListener",
-      "🛠️ **Modern Features**: ES6+ syntax, destructuring, template literals, modules"
+      "🛡️ **Cybersecurity** protects systems, networks, and data from digital attacks",
+      "🎯 **CIA Triad**: Confidentiality, Integrity, Availability",
+      "🦠 **Common Threats**: Malware, phishing, ransomware, social engineering",
+      "🔐 **Authentication**: Multi-factor authentication (MFA) and strong passwords",
+      "🌐 **Network Security**: Firewalls, VPNs, intrusion detection systems",
+      "🕵️ **Ethical Hacking**: Authorized testing to find vulnerabilities",
+      "📋 **Compliance**: GDPR, HIPAA, SOX regulations and standards",
+      "🚨 **Incident Response**: Preparation, detection, containment, recovery"
+    ],
+    quizzes: [
+      {
+        question: "What does the CIA Triad stand for in cybersecurity?",
+        options: [
+          "Central Intelligence Agency",
+          "Confidentiality, Integrity, Availability",
+          "Computer Information Assurance",
+          "Cyber Intelligence Analysis"
+        ],
+        correct: 1
+      },
+      {
+        question: "Which is NOT a common type of malware?",
+        options: ["Virus", "Trojan", "Firewall", "Ransomware"],
+        correct: 2
+      }
+    ]
+  },
+  "Data": {
+    videos: [
+      {
+        title: "Data Science with Python - Getting Started",
+        url: "https://www.youtube.com/embed/ua-CiDNNj30",
+        description: "Introduction to data science using Python, pandas, and numpy"
+      },
+      {
+        title: "Data Visualization with matplotlib and seaborn",
+        url: "https://www.youtube.com/embed/UO98lJQ3QGI",  
+        description: "Creating effective data visualizations and charts"
+      },
+      {
+        title: "Statistics for Data Science",
+        url: "https://www.youtube.com/embed/xxpc-HPKN28",
+        description: "Essential statistical concepts for data analysis"
+      }
+    ],
+    notes: [
+      "📊 **Data Science** extracts insights and knowledge from structured and unstructured data",
+      "🐍 **Python Libraries**: Pandas (data manipulation), NumPy (numerical computing), Matplotlib (visualization)",
+      "📈 **Data Analysis Process**: Collection → Cleaning → Exploration → Modeling → Interpretation",
+      "🎯 **Statistical Concepts**: Mean, median, standard deviation, correlation, hypothesis testing",
+      "🤖 **Machine Learning Integration**: Scikit-learn for predictive modeling",
+      "📊 **Data Visualization**: Creating meaningful charts and graphs to communicate findings",
+      "💾 **Data Sources**: Databases, APIs, CSV files, web scraping",
+      "🔍 **Exploratory Data Analysis (EDA)**: Understanding data patterns and relationships"
+    ],
+    quizzes: [
+      {
+        question: "Which Python library is primarily used for data manipulation?",
+        options: ["NumPy", "Matplotlib", "Pandas", "Scikit-learn"],
+        correct: 2
+      },
+      {
+        question: "What is the first step in the data analysis process?",
+        options: ["Modeling", "Collection", "Visualization", "Interpretation"],
+        correct: 1
+      }
+    ]
+  },
+  "Mobile": {
+    videos: [
+      {
+        title: "React Native - Build Mobile Apps with JavaScript",
+        url: "https://www.youtube.com/embed/0-S5a0eXPoc",
+        description: "Learn React Native for cross-platform mobile development"
+      },
+      {
+        title: "Flutter Development - Google's UI Toolkit",
+        url: "https://www.youtube.com/embed/1gDhl4leEzA",
+        description: "Introduction to Flutter for building beautiful mobile apps"
+      },
+      {
+        title: "Mobile App Design Principles",
+        url: "https://www.youtube.com/embed/6LCGCKOr_fM",
+        description: "Essential UI/UX principles for mobile application design"
+      }
+    ],
+    notes: [
+      "📱 **Mobile Development** creates applications for mobile devices (iOS, Android)",
+      "⚛️ **React Native**: JavaScript framework for cross-platform mobile apps",
+      "🎯 **Flutter**: Google's UI toolkit using Dart language for native performance",
+      "🍎 **iOS Development**: Swift/Objective-C with Xcode IDE",
+      "🤖 **Android Development**: Java/Kotlin with Android Studio",
+      "🎨 **UI/UX Design**: Material Design (Android), Human Interface Guidelines (iOS)",
+      "📦 **App Distribution**: App Store (iOS), Google Play Store (Android)",
+      "🔧 **Development Tools**: Expo, Ionic, Xamarin for cross-platform development"
+    ],
+    quizzes: [
+      {
+        question: "Which language does Flutter primarily use?",
+        options: ["JavaScript", "Swift", "Dart", "Kotlin"],
+        correct: 2
+      },
+      {
+        question: "What is React Native based on?",
+        options: ["React", "Angular", "Vue", "Svelte"],
+        correct: 0
+      }
     ]
   }
 };
@@ -230,14 +385,25 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
   const getTopicKey = (topic: string): keyof typeof topicContent => {
     const topicMap: { [key: string]: keyof typeof topicContent } = {
       'web': 'Web',
-      'python': 'Python',
-      'react': 'React',
-      'javascript': 'JavaScript',
-      'js': 'JavaScript'
+      'ai': 'AI',
+      'machine': 'AI',
+      'cloud': 'Cloud',
+      'cybersecurity': 'Cybersecurity',
+      'cyber': 'Cybersecurity',
+      'security': 'Cybersecurity',
+      'data': 'Data',
+      'mobile': 'Mobile',
+      'app': 'Mobile'
     };
     
     const lowerTopic = topic.toLowerCase();
-    return topicMap[lowerTopic] || 'Web';
+    // Check for partial matches
+    for (const key in topicMap) {
+      if (lowerTopic.includes(key)) {
+        return topicMap[key];
+      }
+    }
+    return 'Web'; // Default fallback
   };
 
   const generateBotResponse = (userMessage: string): Message[] => {
@@ -315,19 +481,15 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
     }
     
     if (lowerMessage.includes('quiz') || lowerMessage.includes('test')) {
+      const randomQuiz = content.quizzes[Math.floor(Math.random() * content.quizzes.length)];
       return [{
         id: Date.now().toString(),
         type: 'bot',
-        content: `Perfect! Let's test your knowledge with a quiz question! 🤔\n\n**Question**: Based on what you've learned about ${currentLesson.topic}, which statement is most accurate?`,
+        content: `Perfect! Let's test your knowledge with a quiz question! 🤔\n\n**Question**: ${randomQuiz.question}`,
         timestamp: new Date(),
         isQuiz: true,
-        quizOptions: [
-          `${currentLesson.topic} is essential for modern development and has wide practical applications`,
-          `${currentLesson.topic} is outdated and rarely used in current projects`,
-          `${currentLesson.topic} is only suitable for beginners with no advanced features`,
-          `${currentLesson.topic} is too complex for most developers to learn effectively`
-        ],
-        correctAnswer: 0
+        quizOptions: randomQuiz.options,
+        correctAnswer: randomQuiz.correct
       }];
     }
     
