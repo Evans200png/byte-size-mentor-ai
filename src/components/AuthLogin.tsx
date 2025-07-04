@@ -61,7 +61,7 @@ const AuthLogin: React.FC = () => {
             <div className="p-3 bg-blue-600 text-white rounded-xl">
               <Brain className="h-8 w-8" />
             </div>
-            <h1 className="text-3xl font-bold text-gray-900">TechLearn AI</h1>
+            <h1 className="text-3xl font-bold text-gray-900">TechBites</h1>
           </div>
           
           <div className="space-y-4">
@@ -115,7 +115,7 @@ const AuthLogin: React.FC = () => {
         <Card className="w-full max-w-md mx-auto lg:mx-0">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">
-              {isLogin ? 'Welcome Back!' : 'Join TechLearn AI'}
+              {isLogin ? 'Welcome Back!' : 'Join TechBites'}
             </CardTitle>
             <p className="text-gray-600">
               {isLogin ? 'Continue your learning journey' : 'Start your learning adventure'}
