@@ -7,6 +7,7 @@ import { Brain, BookOpen, Star, Trophy, Loader2 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
 import Testimonials from '@/components/Testimonials';
+import TopicsSection from '@/components/TopicsSection';
 
 const AuthLogin: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -91,10 +92,23 @@ const AuthLogin: React.FC = () => {
     }
   };
 
+  const handleTopicClick = (topicId: string) => {
+    // Scroll to the auth form to encourage login/registration
+    const authSection = document.querySelector('.auth-form-section');
+    if (authSection) {
+      authSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    toast({
+      title: "Login Required",
+      description: "Please sign in or create an account to start learning!",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       {/* Main Auth Section */}
-      <div className="flex items-center justify-center p-4 min-h-screen">
+      <div className="flex items-center justify-center p-4 min-h-screen auth-form-section">
         <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Welcome Section */}
           <div className="text-center lg:text-left space-y-6">
@@ -288,6 +302,9 @@ const AuthLogin: React.FC = () => {
           </Card>
         </div>
       </div>
+
+      {/* Topics Section */}
+      <TopicsSection onTopicClick={handleTopicClick} />
 
       {/* Testimonials Section */}
       <Testimonials />
