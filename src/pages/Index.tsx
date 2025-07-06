@@ -49,8 +49,26 @@ const Index = () => {
   };
 
   const handleSelectTopic = (topic: Topic) => {
-    setSelectedTopic(topic);
+    // Add color property if it doesn't exist
+    const topicWithColor = {
+      ...topic,
+      color: topic.color || getTopicColor(topic.id)
+    };
+    
+    setSelectedTopic(topicWithColor);
     setAppState('chat');
+  };
+
+  const getTopicColor = (topicId: string) => {
+    const colorMap: { [key: string]: string } = {
+      'web-dev': 'bg-blue-500',
+      'ai-ml': 'bg-purple-500',
+      'cloud': 'bg-green-500',
+      'cybersecurity': 'bg-red-500',
+      'data-science': 'bg-orange-500',
+      'mobile-dev': 'bg-teal-500'
+    };
+    return colorMap[topicId] || 'bg-blue-500';
   };
 
   const handleBackToDashboard = () => {
@@ -108,6 +126,7 @@ const Index = () => {
         <Dashboard 
           onStartLearning={handleStartLearning}
           onResumeLesson={handleResumeLesson}
+          onSelectTopic={handleSelectTopic}
         />
       );
       
@@ -134,6 +153,7 @@ const Index = () => {
         <Dashboard 
           onStartLearning={handleStartLearning}
           onResumeLesson={handleResumeLesson}
+          onSelectTopic={handleSelectTopic}
         />
       );
   }

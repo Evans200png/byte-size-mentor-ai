@@ -7,15 +7,34 @@ import { Progress } from '@/components/ui/progress';
 import { Trophy, Star, BookOpen, Clock, Play, LogOut } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useUserData } from '@/hooks/useUserData';
+import DashboardSearch from '@/components/DashboardSearch';
+
+interface Topic {
+  id: string;
+  title: string;
+  description: string;
+  icon: React.ComponentType<any>;
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
+  duration: string;
+  lessons: number;
+  completedLessons: number;
+}
 
 interface DashboardProps {
   onStartLearning: () => void;
   onResumeLesson: () => void;
+  onSelectTopic?: (topic: Topic) => void;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ onStartLearning, onResumeLesson }) => {
+const Dashboard: React.FC<DashboardProps> = ({ onStartLearning, onResumeLesson, onSelectTopic }) => {
   const { signOut } = useAuth();
   const { userStats, userProfile, loading } = useUserData();
+
+  const handleTopicSelect = (topic: Topic) => {
+    if (onSelectTopic) {
+      onSelectTopic(topic);
+    }
+  };
 
   if (loading) {
     return (
@@ -59,6 +78,9 @@ const Dashboard: React.FC<DashboardProps> = ({ onStartLearning, onResumeLesson }
             Sign Out
           </Button>
         </div>
+
+        {/* Search Feature */}
+        <DashboardSearch onSelectTopic={handleTopicSelect} />
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
