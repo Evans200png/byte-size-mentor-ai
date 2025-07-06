@@ -19,14 +19,22 @@ export const topicContent = {
       }
     ],
     notes: [
-      "🌐 **HTML (HyperText Markup Language)** is the standard markup language for creating web pages",
-      "📝 **Key HTML Elements**: `<html>`, `<head>`, `<body>`, `<h1>-<h6>`, `<p>`, `<div>`, `<span>`",
-      "🎨 **CSS (Cascading Style Sheets)** controls the presentation and layout of web pages",
-      "📐 **Box Model**: Content → Padding → Border → Margin",
-      "⚡ **JavaScript** adds interactivity and dynamic behavior to websites",
-      "🔧 **DOM (Document Object Model)** allows JavaScript to manipulate HTML elements",
-      "📱 **Responsive Design** ensures websites work on all devices using media queries",
-      "🚀 **Modern Tools**: React, Vue, Angular for building complex web applications"
+      "🌐 **HTML5 Semantic Elements**: `<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<aside>`, `<footer>` improve accessibility and SEO",
+      "📱 **Responsive Web Design**: Use CSS Grid and Flexbox for flexible layouts that adapt to different screen sizes",
+      "🎨 **CSS Preprocessing**: Sass/SCSS and Less provide variables, mixins, nesting, and functions for maintainable stylesheets",
+      "⚡ **Modern JavaScript (ES6+)**: Arrow functions, destructuring, template literals, async/await, modules, and classes",
+      "🔧 **DOM Manipulation**: `querySelector()`, `addEventListener()`, `createElement()`, and modern APIs like `fetch()` for dynamic content",
+      "📦 **Package Management**: npm/yarn for dependency management, understanding package.json and semantic versioning",
+      "🏗️ **Build Tools**: Webpack, Vite, Parcel for bundling, minification, and asset optimization",
+      "⚛️ **React Fundamentals**: JSX, components, props, state, hooks (useState, useEffect, useContext), virtual DOM",
+      "🔄 **State Management**: Redux, Zustand, Context API for complex application state management",
+      "🧪 **Testing**: Jest, React Testing Library, Cypress for unit, integration, and end-to-end testing",
+      "🚀 **Performance Optimization**: Code splitting, lazy loading, memoization, bundle analysis, Core Web Vitals",
+      "🔒 **Web Security**: HTTPS, CSP headers, XSS prevention, CSRF protection, input validation and sanitization",
+      "🌍 **Progressive Web Apps**: Service workers, web app manifests, offline functionality, push notifications",
+      "📊 **Web Analytics**: Google Analytics, performance monitoring, error tracking with tools like Sentry",
+      "🎯 **SEO Best Practices**: Meta tags, structured data, sitemap.xml, robots.txt, page speed optimization",
+      "🔧 **Developer Tools**: Chrome DevTools profiling, debugging, network analysis, accessibility auditing"
     ],
     quizzes: [
       {
@@ -130,14 +138,22 @@ export const topicContent = {
       }
     ],
     notes: [
-      "🤖 **Artificial Intelligence (AI)** is the simulation of human intelligence in machines",
-      "🧠 **Machine Learning (ML)** is a subset of AI that learns from data without explicit programming",
-      "🔍 **Supervised Learning**: Training with labeled data (classification, regression)",
-      "🎯 **Unsupervised Learning**: Finding patterns in unlabeled data (clustering, association)",
-      "🎮 **Reinforcement Learning**: Learning through interaction and rewards",
-      "⚡ **Neural Networks**: Computing systems inspired by biological neural networks",
-      "🔥 **Deep Learning**: ML using deep neural networks with multiple layers",
-      "📊 **Applications**: Image recognition, NLP, autonomous vehicles, recommendation systems"
+      "🧠 **Neural Network Architectures**: Feedforward, Convolutional (CNN), Recurrent (RNN), LSTM, GRU, Transformer models",
+      "🔬 **Deep Learning Frameworks**: TensorFlow, PyTorch, Keras for building and training complex neural networks",
+      "📊 **Supervised Learning Algorithms**: Linear/Logistic Regression, Decision Trees, Random Forest, SVM, Gradient Boosting (XGBoost, LightGBM)",
+      "🔍 **Unsupervised Learning**: K-means clustering, DBSCAN, PCA, t-SNE, autoencoders for dimensionality reduction and pattern discovery",
+      "🎮 **Reinforcement Learning**: Q-learning, policy gradients, actor-critic methods, Deep Q-Networks (DQN), PPO, A3C",
+      "📝 **Natural Language Processing**: Tokenization, word embeddings (Word2Vec, GloVe), BERT, GPT, named entity recognition",
+      "👁️ **Computer Vision**: Image classification, object detection (YOLO, R-CNN), semantic segmentation, face recognition",
+      "⚙️ **Feature Engineering**: Feature selection, scaling, encoding categorical variables, handling missing data, outlier detection",
+      "📈 **Model Evaluation**: Cross-validation, precision/recall, F1-score, ROC-AUC, confusion matrices, overfitting prevention",
+      "🏗️ **MLOps Pipeline**: Data versioning, model training automation, deployment strategies, monitoring, A/B testing",
+      "🔧 **Hyperparameter Tuning**: Grid search, random search, Bayesian optimization, early stopping, learning rate scheduling",
+      "🌐 **AI Ethics**: Bias detection, fairness metrics, explainable AI (LIME, SHAP), privacy-preserving ML techniques",
+      "💾 **Big Data ML**: Distributed computing with Spark, Dask, handling large datasets, streaming ML pipelines",
+      "🚀 **Model Deployment**: Docker containerization, REST APIs, cloud platforms (AWS SageMaker, Google AI Platform), edge computing",
+      "🔒 **AI Security**: Adversarial attacks, model robustness, differential privacy, federated learning concepts",
+      "📱 **Applied AI**: AI in healthcare, finance, autonomous vehicles, recommendation systems, chatbots, computer-aided design"
     ],
     quizzes: [
       {
@@ -241,14 +257,22 @@ export const topicContent = {
       }
     ],
     notes: [
-      "☁️ **Cloud Computing** delivers computing services over the internet",
-      "🏢 **Service Models**: IaaS (Infrastructure), PaaS (Platform), SaaS (Software)",
-      "🌍 **Major Providers**: AWS (Amazon), Microsoft Azure, Google Cloud Platform",
-      "📦 **Containerization**: Packaging applications with Docker for consistency",
-      "⚙️ **Kubernetes**: Container orchestration platform for managing containerized applications",
-      "🔒 **Security**: Identity management, encryption, compliance in cloud environments",
-      "💰 **Cost Benefits**: Pay-as-you-use, reduced infrastructure costs",
-      "📈 **Scalability**: Auto-scaling resources based on demand"
+      "☁️ **Cloud Service Models**: IaaS (EC2, Compute Engine), PaaS (App Engine, Heroku), SaaS (Office 365, Salesforce)",
+      "🏗️ **AWS Core Services**: EC2, S3, RDS, Lambda, VPC, IAM, CloudFormation, ELB, Auto Scaling, CloudWatch",
+      "🔷 **Microsoft Azure**: Virtual Machines, Blob Storage, Azure SQL, Functions, Resource Manager, Active Directory",
+      "🌍 **Google Cloud Platform**: Compute Engine, Cloud Storage, BigQuery, Cloud Functions, Kubernetes Engine, Firebase",
+      "📦 **Containerization Technologies**: Docker images, containers, registries, multi-stage builds, Docker Compose",
+      "⚙️ **Kubernetes Architecture**: Pods, Services, Deployments, ConfigMaps, Secrets, Ingress, persistent volumes",
+      "🔧 **Infrastructure as Code**: Terraform, AWS CloudFormation, Azure ARM templates, Google Deployment Manager",
+      "🚀 **CI/CD Pipelines**: Jenkins, GitLab CI, GitHub Actions, Azure DevOps, automated testing and deployment",
+      "🔒 **Cloud Security**: IAM policies, security groups, network ACLs, encryption at rest/transit, compliance frameworks",
+      "📊 **Monitoring & Logging**: CloudWatch, Azure Monitor, Google Cloud Monitoring, ELK stack, distributed tracing",
+      "🌐 **Content Delivery**: CloudFront, Azure CDN, Cloud CDN, edge computing, global load balancing",
+      "💾 **Database Services**: RDS, DynamoDB, Azure SQL, Cosmos DB, Cloud SQL, BigQuery for analytics",
+      "🔄 **Message Queues**: SQS, Service Bus, Pub/Sub, Apache Kafka for distributed system communication",
+      "📈 **Auto Scaling**: Horizontal/vertical scaling, load balancers, health checks, disaster recovery strategies",
+      "💰 **Cost Optimization**: Reserved instances, spot instances, resource tagging, cost monitoring and alerts",
+      "🏢 **Hybrid Cloud**: On-premises integration, VPN connections, hybrid storage solutions, edge computing strategies"
     ],
     quizzes: [
       {
@@ -352,14 +376,22 @@ export const topicContent = {
       }
     ],
     notes: [
-      "🛡️ **Cybersecurity** protects systems, networks, and data from digital attacks",
-      "🎯 **CIA Triad**: Confidentiality, Integrity, Availability",
-      "🦠 **Common Threats**: Malware, phishing, ransomware, social engineering",
-      "🔐 **Authentication**: Multi-factor authentication (MFA) and strong passwords",
-      "🌐 **Network Security**: Firewalls, VPNs, intrusion detection systems",
-      "🕵️ **Ethical Hacking**: Authorized testing to find vulnerabilities",
-      "📋 **Compliance**: GDPR, HIPAA, SOX regulations and standards",
-      "🚨 **Incident Response**: Preparation, detection, containment, recovery"
+      "🛡️ **Security Frameworks**: NIST Cybersecurity Framework, ISO 27001, CIS Controls, OWASP Top 10 vulnerabilities",
+      "🔐 **Cryptography**: AES, RSA, ECC encryption, digital signatures, PKI, certificate authorities, key management",
+      "🌐 **Network Security**: Firewalls (stateful/stateless), IDS/IPS, VPNs, network segmentation, DMZ architecture",
+      "🕵️ **Penetration Testing**: OWASP methodology, Kali Linux tools, vulnerability scanning, social engineering assessments",
+      "🦠 **Malware Analysis**: Static/dynamic analysis, sandboxing, reverse engineering, threat intelligence platforms",
+      "🔍 **Incident Response**: NIST incident response lifecycle, forensics, threat hunting, SIEM platforms (Splunk, ELK)",
+      "👤 **Identity & Access Management**: Zero-trust architecture, privileged access management, SAML, OAuth 2.0, LDAP",
+      "📱 **Endpoint Security**: EDR/XDR solutions, mobile device management, application whitelisting, behavioral analysis",
+      "☁️ **Cloud Security**: CASB, cloud workload protection, container security, serverless security, DevSecOps practices",
+      "⚖️ **Compliance & Governance**: GDPR, HIPAA, SOX, PCI DSS requirements, risk assessment methodologies",
+      "🔒 **Application Security**: Secure coding practices, SAST/DAST tools, API security, container image scanning",
+      "🚨 **Threat Intelligence**: IOCs, TTPs, MITRE ATT&CK framework, threat feeds, cyber kill chain analysis",
+      "🏢 **Enterprise Security**: Security architecture design, business continuity planning, disaster recovery strategies",
+      "🎓 **Security Awareness**: Phishing simulation, security training programs, human factor risk mitigation",
+      "⚡ **Emerging Threats**: AI-powered attacks, IoT security, 5G security considerations, quantum cryptography impact",
+      "📊 **Security Metrics**: KPIs, risk quantification, security ROI measurement, continuous monitoring strategies"
     ],
     quizzes: [
       {
@@ -463,14 +495,22 @@ export const topicContent = {
       }
     ],
     notes: [
-      "📊 **Data Science** extracts insights and knowledge from structured and unstructured data",
-      "🐍 **Python Libraries**: Pandas (data manipulation), NumPy (numerical computing), Matplotlib (visualization)",
-      "📈 **Data Analysis Process**: Collection → Cleaning → Exploration → Modeling → Interpretation",
-      "🎯 **Statistical Concepts**: Mean, median, standard deviation, correlation, hypothesis testing",
-      "🤖 **Machine Learning Integration**: Scikit-learn for predictive modeling",
-      "📊 **Data Visualization**: Creating meaningful charts and graphs to communicate findings",
-      "💾 **Data Sources**: Databases, APIs, CSV files, web scraping",
-      "🔍 **Exploratory Data Analysis (EDA)**: Understanding data patterns and relationships"
+      "🐍 **Python Data Stack**: NumPy (arrays), Pandas (dataframes), Matplotlib/Seaborn (visualization), Jupyter notebooks",
+      "📊 **Advanced Statistics**: Hypothesis testing, ANOVA, chi-square tests, regression analysis, time series analysis",
+      "🔍 **Exploratory Data Analysis**: Data profiling, outlier detection, correlation analysis, feature importance ranking",
+      "🧹 **Data Cleaning**: Missing value imputation, duplicate removal, data type conversion, outlier treatment strategies",
+      "📈 **Data Visualization**: Interactive plots (Plotly, Bokeh), dashboards (Dash, Streamlit), statistical plots, geospatial visualization",
+      "🤖 **Machine Learning Integration**: Scikit-learn pipelines, feature engineering, model selection, hyperparameter tuning",
+      "💾 **Big Data Technologies**: Apache Spark (PySpark), Dask, distributed computing, handling datasets larger than memory",
+      "🗄️ **Database Integration**: SQL proficiency, NoSQL databases (MongoDB), data warehousing concepts, ETL pipelines",
+      "⚡ **Real-time Analytics**: Stream processing, Apache Kafka, real-time dashboards, event-driven architectures",
+      "📊 **Business Intelligence**: KPI development, A/B testing, cohort analysis, customer segmentation, churn prediction",
+      "🔬 **Advanced Analytics**: Predictive modeling, forecasting, clustering techniques, dimensionality reduction (PCA, t-SNE)",
+      "🌐 **Web Scraping**: BeautifulSoup, Scrapy, API integration, data collection automation, rate limiting strategies",
+      "📱 **Data Engineering**: Apache Airflow, data pipelines, data quality monitoring, version control for data",
+      "☁️ **Cloud Data Platforms**: AWS (S3, Redshift, Glue), Google BigQuery, Azure Data Factory, serverless analytics",
+      "🎯 **Domain Applications**: Financial analytics, healthcare data, marketing attribution, supply chain optimization",
+      "📋 **Data Governance**: Privacy compliance (GDPR), data lineage, metadata management, data security practices"
     ],
     quizzes: [
       {
@@ -574,14 +614,22 @@ export const topicContent = {
       }
     ],
     notes: [
-      "📱 **Mobile Development** creates applications for mobile devices (iOS, Android)",
-      "⚛️ **React Native**: JavaScript framework for cross-platform mobile apps",
-      "🎯 **Flutter**: Google's UI toolkit using Dart language for native performance",
-      "🍎 **iOS Development**: Swift/Objective-C with Xcode IDE",
-      "🤖 **Android Development**: Java/Kotlin with Android Studio",
-      "🎨 **UI/UX Design**: Material Design (Android), Human Interface Guidelines (iOS)",
-      "📦 **App Distribution**: App Store (iOS), Google Play Store (Android)",
-      "🔧 **Development Tools**: Expo, Ionic, Xamarin for cross-platform development"
+      "📱 **Cross-Platform Frameworks**: React Native (JavaScript/TypeScript), Flutter (Dart), Xamarin (C#), Ionic (web technologies)",
+      "🍎 **iOS Development**: Swift programming, Xcode IDE, UIKit/SwiftUI frameworks, App Store guidelines and submission process",
+      "🤖 **Android Development**: Kotlin/Java programming, Android Studio, Jetpack Compose, Material Design principles",
+      "🎨 **Mobile UI/UX Design**: Touch-first interfaces, navigation patterns, platform-specific guidelines (HIG/Material Design)",
+      "📲 **Device Integration**: Camera, GPS, sensors, push notifications, biometric authentication, device storage access",
+      "🔄 **State Management**: Redux (React Native), Provider/Bloc (Flutter), MobX, context API for complex app state",
+      "🌐 **API Integration**: REST APIs, GraphQL, real-time communication (WebSockets), offline data synchronization",
+      "💾 **Local Storage**: SQLite, Realm, async storage, secure storage for sensitive data, caching strategies",
+      "🧪 **Mobile Testing**: Unit testing, integration testing, UI automation (Appium, Detox), device testing strategies",
+      "📊 **Performance Optimization**: Memory management, battery optimization, image optimization, lazy loading, code splitting",
+      "🚀 **App Deployment**: Code signing, CI/CD pipelines, app store optimization, beta testing (TestFlight, Play Console)",
+      "🔒 **Mobile Security**: Certificate pinning, code obfuscation, root/jailbreak detection, secure API communication",
+      "📈 **Analytics & Monitoring**: Crash reporting (Crashlytics), user analytics, performance monitoring, A/B testing",
+      "🔧 **Development Tools**: Hot reload, debugging tools, profiling, emulators/simulators, physical device testing",
+      "💰 **Monetization Strategies**: In-app purchases, subscriptions, advertising integration (AdMob), freemium models",
+      "🌍 **Accessibility**: VoiceOver/TalkBack support, color contrast, font scaling, motor accessibility considerations"
     ],
     quizzes: [
       {
