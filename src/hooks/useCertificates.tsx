@@ -58,12 +58,16 @@ export const useCertificates = () => {
     const eligible = averageScore >= 70 && completedLessons === totalLessons;
 
     if (eligible) {
+      // Generate certificate_id on the client side since the trigger might not be working
+      const certificateId = `CERT-${Math.random().toString(36).substr(2, 8).toUpperCase()}-${new Date().getFullYear()}`;
+      
       const { data, error } = await supabase
         .from('certificates')
         .insert({
           user_id: user.id,
           topic_id: topicId,
           topic_title: topicTitle,
+          certificate_id: certificateId,
           score_achieved: Math.round(averageScore),
           lessons_completed: completedLessons,
           total_lessons: totalLessons

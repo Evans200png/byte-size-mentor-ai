@@ -22,7 +22,7 @@ interface ForumPost {
   created_at: string;
   profiles?: {
     name: string;
-  };
+  } | null;
   replies_count?: number;
   votes_count?: number;
 }
@@ -36,7 +36,7 @@ interface ForumReply {
   created_at: string;
   profiles?: {
     name: string;
-  };
+  } | null;
   votes_count?: number;
 }
 
@@ -62,7 +62,7 @@ export const useForums = () => {
       .from('forum_posts')
       .select(`
         *,
-        profiles!forum_posts_user_id_fkey (name)
+        profiles (name)
       `)
       .order('is_pinned', { ascending: false })
       .order('created_at', { ascending: false });
@@ -72,7 +72,16 @@ export const useForums = () => {
     }
 
     const { data } = await query;
-    if (data) setPosts(data as ForumPost[]);
+    if (data) {
+      // Handle the data safely with proper type assertion
+      const postsWithProfiles = data.map(post => ({
+        ...post,
+        profiles: post.profiles && typeof post.profiles === 'object' && 'name' in post.profiles 
+          ? post.profiles as { name: string }
+          : null
+      }));
+      setPosts(postsWithProfiles);
+    }
     setLoading(false);
   };
 
@@ -81,12 +90,21 @@ export const useForums = () => {
       .from('forum_replies')
       .select(`
         *,
-        profiles!forum_replies_user_id_fkey (name)
+        profiles (name)
       `)
       .eq('post_id', postId)
       .order('created_at', { ascending: true });
 
-    if (data) setReplies(data as ForumReply[]);
+    if (data) {
+      // Handle the data safely with proper type assertion
+      const repliesWithProfiles = data.map(reply => ({
+        ...reply,
+        profiles: reply.profiles && typeof reply.profiles === 'object' && 'name' in reply.profiles 
+          ? reply.profiles as { name: string }
+          : null
+      }));
+      setReplies(repliesWithProfiles);
+    }
   };
 
   const createPost = async (categoryId: string, title: string, content: string) => {
