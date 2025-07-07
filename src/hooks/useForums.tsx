@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
@@ -76,7 +75,7 @@ export const useForums = () => {
       // Handle the data safely with proper type assertion
       const postsWithProfiles = data.map(post => ({
         ...post,
-        profiles: post.profiles && typeof post.profiles === 'object' && 'name' in post.profiles 
+        profiles: post.profiles && post.profiles !== null && typeof post.profiles === 'object' && 'name' in post.profiles 
           ? post.profiles as { name: string }
           : null
       }));
@@ -99,7 +98,7 @@ export const useForums = () => {
       // Handle the data safely with proper type assertion
       const repliesWithProfiles = data.map(reply => ({
         ...reply,
-        profiles: reply.profiles && typeof reply.profiles === 'object' && 'name' in reply.profiles 
+        profiles: reply.profiles && reply.profiles !== null && typeof reply.profiles === 'object' && 'name' in reply.profiles 
           ? reply.profiles as { name: string }
           : null
       }));
