@@ -62,7 +62,7 @@ export const useForums = () => {
       .from('forum_posts')
       .select(`
         *,
-        profiles:user_id (name)
+        profiles!forum_posts_user_id_fkey (name)
       `)
       .order('is_pinned', { ascending: false })
       .order('created_at', { ascending: false });
@@ -72,7 +72,7 @@ export const useForums = () => {
     }
 
     const { data } = await query;
-    if (data) setPosts(data);
+    if (data) setPosts(data as ForumPost[]);
     setLoading(false);
   };
 
@@ -81,16 +81,16 @@ export const useForums = () => {
       .from('forum_replies')
       .select(`
         *,
-        profiles:user_id (name)
+        profiles!forum_replies_user_id_fkey (name)
       `)
       .eq('post_id', postId)
       .order('created_at', { ascending: true });
 
-    if (data) setReplies(data);
+    if (data) setReplies(data as ForumReply[]);
   };
 
   const createPost = async (categoryId: string, title: string, content: string) => {
-    if (!user) return;
+    if (!user) return { error: 'User not authenticated' };
 
     const { error } = await supabase
       .from('forum_posts')
@@ -108,7 +108,7 @@ export const useForums = () => {
   };
 
   const createReply = async (postId: string, content: string, parentReplyId?: string) => {
-    if (!user) return;
+    if (!user) return { error: 'User not authenticated' };
 
     const { error } = await supabase
       .from('forum_replies')
@@ -126,7 +126,7 @@ export const useForums = () => {
   };
 
   const voteOnPost = async (postId: string, voteType: 'upvote' | 'downvote') => {
-    if (!user) return;
+    if (!user) return { error: 'User not authenticated' };
 
     const { error } = await supabase
       .from('forum_votes')
@@ -140,7 +140,7 @@ export const useForums = () => {
   };
 
   const voteOnReply = async (replyId: string, voteType: 'upvote' | 'downvote') => {
-    if (!user) return;
+    if (!user) return { error: 'User not authenticated' };
 
     const { error } = await supabase
       .from('forum_votes')
