@@ -2,12 +2,17 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useUserData } from '@/hooks/useUserData';
+import { useCertificates } from '@/hooks/useCertificates';
 import AuthLogin from '@/components/AuthLogin';
 import Dashboard from '@/components/Dashboard';
 import TopicSelector from '@/components/TopicSelector';
 import ChatInterface from '@/components/ChatInterface';
+import ForumPage from '@/components/forum/ForumPage';
+import CertificatesPage from '@/components/certificates/CertificatesPage';
+import AIChatbot from '@/components/chatbot/AIChatbot';
+import FeedbackModal from '@/components/feedback/FeedbackModal';
 
-type AppState = 'dashboard' | 'topics' | 'chat';
+type AppState = 'dashboard' | 'topics' | 'chat' | 'forums' | 'certificates';
 
 interface Topic {
   id: string;
@@ -24,8 +29,22 @@ interface Topic {
 const Index = () => {
   const { user, loading: authLoading } = useAuth();
   const { updateUserStats } = useUserData();
+  const { checkEligibilityAndCreateCertificate } = useCertificates();
   const [appState, setAppState] = useState<AppState>('dashboard');
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
+  const [feedbackModal, setFeedbackModal] = useState<{
+    isOpen: boolean;
+    topicId: string;
+    lessonId?: number;
+    quizId?: number;
+    type: 'lesson' | 'quiz';
+    title: string;
+  }>({
+    isOpen: false,
+    topicId: '',
+    type: 'lesson',
+    title: ''
+  });
 
   // Show loading screen while checking authentication
   if (authLoading) {
@@ -76,6 +95,14 @@ const Index = () => {
     setSelectedTopic(null);
   };
 
+  const handleOpenForums = () => {
+    setAppState('forums');
+  };
+
+  const handleOpenCertificates = () => {
+    setAppState('certificates');
+  };
+
   const handleResumeLesson = () => {
     // For demo purposes, select the first topic with progress
     const webDevTopic = {
@@ -94,12 +121,38 @@ const Index = () => {
     setAppState('chat');
   };
 
-  const handleLessonComplete = (score: number) => {
+  const handleLessonComplete = async (score: number, lessonType: 'lesson' | 'quiz') => {
+    if (!selectedTopic) return;
+
+    // Show feedback modal
+    setFeedbackModal({
+      isOpen: true,
+      topicId: selectedTopic.id,
+      lessonId: lessonType === 'lesson' ? 1 : undefined,
+      quizId: lessonType === 'quiz' ? 1 : undefined,
+      type: lessonType,
+      title: selectedTopic.title
+    });
+
     // Update user stats
+    const pointsEarned = score >= 80 ? 100 : 50;
+    const newCompletedLessons = (selectedTopic.completedLessons || 0) + 1;
+    
     updateUserStats({
-      points: (score >= 80 ? 100 : 50),
+      points: pointsEarned,
       completedLessons: 1 // This will be added to current count
     });
+
+    // Check for certificate eligibility
+    if (newCompletedLessons === selectedTopic.lessons && score >= 70) {
+      await checkEligibilityAndCreateCertificate(
+        selectedTopic.id,
+        selectedTopic.title,
+        score,
+        newCompletedLessons,
+        selectedTopic.lessons
+      );
+    }
     
     setTimeout(() => {
       setAppState('dashboard');
@@ -123,38 +176,79 @@ const Index = () => {
   switch (appState) {
     case 'dashboard':
       return (
-        <Dashboard 
-          onStartLearning={handleStartLearning}
-          onResumeLesson={handleResumeLesson}
-          onSelectTopic={handleSelectTopic}
-        />
+        <>
+          <Dashboard 
+            onStartLearning={handleStartLearning}
+            onResumeLesson={handleResumeLesson}
+            onSelectTopic={handleSelectTopic}
+            onOpenForums={handleOpenForums}
+            onOpenCertificates={handleOpenCertificates}
+          />
+          <AIChatbot />
+          <FeedbackModal
+            isOpen={feedbackModal.isOpen}
+            onClose={() => setFeedbackModal({ ...feedbackModal, isOpen: false })}
+            topicId={feedbackModal.topicId}
+            lessonId={feedbackModal.lessonId}
+            quizId={feedbackModal.quizId}
+            type={feedbackModal.type}
+            title={feedbackModal.title}
+          />
+        </>
       );
       
     case 'topics':
       return (
-        <TopicSelector 
-          onSelectTopic={handleSelectTopic}
-          onBackToDashboard={handleBackToDashboard}
-        />
+        <>
+          <TopicSelector 
+            onSelectTopic={handleSelectTopic}
+            onBackToDashboard={handleBackToDashboard}
+          />
+          <AIChatbot />
+        </>
       );
       
     case 'chat':
       const currentLesson = getCurrentLesson();
       return currentLesson ? (
-        <ChatInterface 
-          currentLesson={currentLesson}
-          onBackToDashboard={handleBackToDashboard}
-          onLessonComplete={handleLessonComplete}
-        />
+        <>
+          <ChatInterface 
+            currentLesson={currentLesson}
+            onBackToDashboard={handleBackToDashboard}
+            onLessonComplete={(score) => handleLessonComplete(score, 'quiz')}
+          />
+          <AIChatbot />
+        </>
       ) : null;
+
+    case 'forums':
+      return (
+        <>
+          <ForumPage onBack={handleBackToDashboard} />
+          <AIChatbot />
+        </>
+      );
+
+    case 'certificates':
+      return (
+        <>
+          <CertificatesPage onBack={handleBackToDashboard} />
+          <AIChatbot />
+        </>
+      );
       
     default:
       return (
-        <Dashboard 
-          onStartLearning={handleStartLearning}
-          onResumeLesson={handleResumeLesson}
-          onSelectTopic={handleSelectTopic}
-        />
+        <>
+          <Dashboard 
+            onStartLearning={handleStartLearning}
+            onResumeLesson={handleResumeLesson}
+            onSelectTopic={handleSelectTopic}
+            onOpenForums={handleOpenForums}
+            onOpenCertificates={handleOpenCertificates}
+          />
+          <AIChatbot />
+        </>
       );
   }
 };

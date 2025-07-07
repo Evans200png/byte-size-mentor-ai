@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { Trophy, Star, BookOpen, Clock, Play, LogOut } from 'lucide-react';
+import { Trophy, Star, BookOpen, Clock, Play, LogOut, MessageSquare, Award } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useUserData } from '@/hooks/useUserData';
 import DashboardSearch from '@/components/DashboardSearch';
@@ -24,9 +24,17 @@ interface DashboardProps {
   onStartLearning: () => void;
   onResumeLesson: () => void;
   onSelectTopic?: (topic: Topic) => void;
+  onOpenForums: () => void;
+  onOpenCertificates: () => void;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ onStartLearning, onResumeLesson, onSelectTopic }) => {
+const Dashboard: React.FC<DashboardProps> = ({ 
+  onStartLearning, 
+  onResumeLesson, 
+  onSelectTopic, 
+  onOpenForums,
+  onOpenCertificates 
+}) => {
   const { signOut } = useAuth();
   const { userStats, userProfile, loading } = useUserData();
 
@@ -111,6 +119,25 @@ const Dashboard: React.FC<DashboardProps> = ({ onStartLearning, onResumeLesson, 
                 {userStats?.completedLessons || 0}/{userStats?.totalLessons || 50}
               </div>
               <div className="text-sm text-gray-600">Lessons</div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={onOpenForums}>
+            <CardContent className="p-6 text-center">
+              <MessageSquare className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold mb-2">Discussion Forums</h3>
+              <p className="text-gray-600 text-sm">Connect with fellow learners and get help</p>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={onOpenCertificates}>
+            <CardContent className="p-6 text-center">
+              <Award className="h-12 w-12 text-purple-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold mb-2">My Certificates</h3>
+              <p className="text-gray-600 text-sm">View and download your earned certificates</p>
             </CardContent>
           </Card>
         </div>

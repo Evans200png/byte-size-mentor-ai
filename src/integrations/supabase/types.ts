@@ -9,6 +9,236 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      certificates: {
+        Row: {
+          certificate_id: string
+          id: string
+          issued_at: string
+          lessons_completed: number
+          score_achieved: number
+          topic_id: string
+          topic_title: string
+          total_lessons: number
+          user_id: string
+        }
+        Insert: {
+          certificate_id: string
+          id?: string
+          issued_at?: string
+          lessons_completed: number
+          score_achieved: number
+          topic_id: string
+          topic_title: string
+          total_lessons: number
+          user_id: string
+        }
+        Update: {
+          certificate_id?: string
+          id?: string
+          issued_at?: string
+          lessons_completed?: number
+          score_achieved?: number
+          topic_id?: string
+          topic_title?: string
+          total_lessons?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      forum_categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          topic_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          topic_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          topic_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      forum_posts: {
+        Row: {
+          category_id: string
+          content: string
+          created_at: string
+          id: string
+          is_locked: boolean | null
+          is_pinned: boolean | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          category_id: string
+          content: string
+          created_at?: string
+          id?: string
+          is_locked?: boolean | null
+          is_pinned?: boolean | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          category_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          is_locked?: boolean | null
+          is_pinned?: boolean | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "forum_posts_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "forum_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      forum_replies: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          parent_reply_id: string | null
+          post_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          parent_reply_id?: string | null
+          post_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          parent_reply_id?: string | null
+          post_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "forum_replies_parent_reply_id_fkey"
+            columns: ["parent_reply_id"]
+            isOneToOne: false
+            referencedRelation: "forum_replies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "forum_replies_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "forum_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      forum_votes: {
+        Row: {
+          created_at: string
+          id: string
+          post_id: string | null
+          reply_id: string | null
+          user_id: string
+          vote_type: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          post_id?: string | null
+          reply_id?: string | null
+          user_id: string
+          vote_type: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          post_id?: string | null
+          reply_id?: string | null
+          user_id?: string
+          vote_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "forum_votes_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "forum_posts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "forum_votes_reply_id_fkey"
+            columns: ["reply_id"]
+            isOneToOne: false
+            referencedRelation: "forum_replies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lesson_feedback: {
+        Row: {
+          comment: string | null
+          created_at: string
+          feedback_type: string
+          id: string
+          lesson_id: number | null
+          quiz_id: number | null
+          rating: number
+          topic_id: string
+          user_id: string
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string
+          feedback_type: string
+          id?: string
+          lesson_id?: number | null
+          quiz_id?: number | null
+          rating: number
+          topic_id: string
+          user_id: string
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string
+          feedback_type?: string
+          id?: string
+          lesson_id?: number | null
+          quiz_id?: number | null
+          rating?: number
+          topic_id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string | null
@@ -107,7 +337,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_certificate_id: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
