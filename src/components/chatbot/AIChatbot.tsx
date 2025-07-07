@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { MessageCircle, X, Send, Mic, MicOff } from 'lucide-react';
+import { User, X, Send, Mic, MicOff } from 'lucide-react';
 
 interface ChatMessage {
   id: string;
@@ -118,7 +117,7 @@ const AIChatbot: React.FC = () => {
         className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg z-50"
         onClick={() => setIsOpen(true)}
       >
-        <MessageCircle className="h-6 w-6" />
+        <User className="h-6 w-6" />
       </Button>
     );
   }
@@ -127,7 +126,7 @@ const AIChatbot: React.FC = () => {
     <Card className="fixed bottom-6 right-6 w-96 h-[500px] shadow-xl z-50 flex flex-col">
       <div className="flex items-center justify-between p-4 border-b">
         <div className="flex items-center gap-2">
-          <MessageCircle className="h-5 w-5 text-blue-600" />
+          <User className="h-5 w-5 text-blue-600" />
           <h3 className="font-semibold">TechBites Assistant</h3>
         </div>
         <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)}>
